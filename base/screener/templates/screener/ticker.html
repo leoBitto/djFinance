@@ -1,0 +1,90 @@
+{% extends "screener/base.html" %}
+{% load static %}
+
+{% block content %} 
+
+{% include "screener/navbar.html" %}
+
+        <h1 class="text-center my-3">
+         <img src="{{info.logo_url}}" alt="company logo"  height="50" style="display:inline; vertical-align:middle;">
+          {{ ticker }} - {{ info.symbol }}
+        </h1>
+
+        <div class="container-lg h-100 w-100 d-flex flex-row">
+
+            <div class="container d-flex w-30 flex-column mx-auto my-5">
+                <div class="container d-flex ">
+                    <p>{{ info.longBusinessSummary }}
+                </div>
+
+                <div class="container d-flex ">
+                    <ul>
+                        <li>sector - {{info.sector}}</li>
+                        <li>industry - {{info.industry}}</li>
+                        <li>country - {{info.country}}</li>
+                        <li>website - <a href="{{info.website}}">{{info.website}}</a></li>
+                        <li>currency - {{info.financialCurrency}}</li>
+                        <li>city - {{info.city}}</li>
+                        <li>state - {{info.state}}</li>
+                        <li>zip - {{info.zip}}</li>
+                        <li>phone - {{info.phone}}</li>
+
+                        <li>full Time Employees - {{info.fullTimeEmployees}}</li>
+                    </ul>   
+                </div>
+
+                <div class="container h-100 d-flex flex-column">
+                    <div class="container">
+                        <h5> liquidity indices </h5>
+                        <ul>
+                            <li> CR: {{CR}} [+, 1.5 - 2.5] </li>
+                            <li> QR: {{QR}} [+, 1 - 2]</li>
+                        </ul>
+                    </div>
+                    <div class="container">
+                        <h5> financial solidity indices </h5>
+                        <ul>
+                            <li> fixed assets coverage: {{copertura_immobilizzazioni}} [+, >0.7]</li>
+                            <li> RI: {{RI}} [-, < 3]</li>
+                            <li> interest expense coverage: {{copertura_interessi_passivi}} [+]</li>
+                            <li> ROD: {{ROD}} [-]</li>
+                        </ul>
+                    </div>
+                    <div class="container">
+                        <h5> redditivity indices </h5>
+                        <ul>
+                            <li> ROE: {{ROE}} [+]</li>
+                            <li> ROA: {{ROA}} [+]</li>
+                            <li> ROS: {{ROS}} [+]</li>
+                            <li> ROI: {{ROI}} [+]</li>
+                            <li> ROT: {{ROT}} [+]</li>
+                            <li> active circulating rotation: {{rotazione_attivo_circolante}} [+]</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+       
+            <div class="container h-100 w-70 my-5">
+                {{hist|safe}}
+            </div> 
+        </div>
+
+        <div class="container d-flex w-100 ">
+            {{pie_chart | safe}}  
+        </div>
+
+        <div class="container w-100">
+            {{ candlestick | safe }}
+        </div>
+
+        <div class="container w-100">
+            {{ bollinger | safe }}
+        </div>
+
+        <div class="container w-100">
+            {{ ichimoku | safe }}
+        </div>
+{% endblock %} 
+
+        
